@@ -1,0 +1,50 @@
+import datetime
+disponivel = True
+
+def alugar(nome, marca):
+    if disponivel:
+      print(f"'{nome}' alugou o carro {marca}.")
+    else:
+      print(f" {marca} esta indisponivel.")
+
+def devolver(nome, marca):
+  print(f"'{nome}' devolvel o carro {marca}.")
+
+sentinela = True
+
+registro = []
+
+print('Olá')
+op = input('1 - Alugar; 2 - Devolver; 3 - Sair: ')
+while sentinela:
+  if op != '3' and op != '2' and op != '1':
+    print('Você digitou um valor incorreto')
+    print('Terminando...')
+    break
+
+  if op == '3':
+    sentinela = False
+    print('Saindo......')
+    break
+
+  nome = input('Insira o nome do cliente: ')
+  marca = input('Insira a marca do carro: ')
+
+  data_atual = datetime.datetime.now()
+
+  data_formatada = data_atual.strftime("%d/%m/%Y %H:%M:%S")
+
+  if op == '1':
+    alugar(nome, marca)
+    registro.append([nome, marca, 'Alugado', data_formatada])
+
+  else:
+    devolver(nome, marca)
+    registro.append([nome, marca, 'Devolvido', data_formatada])
+
+  op = input('1 - Alugar; 2 - Devolver; 3 - Sair: ')
+
+print()
+print('REGISTROS:')
+for i in registro:
+  print(i)
